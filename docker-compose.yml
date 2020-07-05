@@ -75,6 +75,7 @@ services:
       context: .
       dockerfile: Dockerfile
     container_name: artisan
+    user: www-data:www-data
     volumes:
       - ./:/var/www/html
     depends_on:
@@ -88,7 +89,7 @@ services:
     image: phpmyadmin/phpmyadmin
     container_name: phpmyadmin
     environment:
-      MYSQL_ROOT_PASSWORD: secret
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
       PMA_HOST: mysql
       PMA_PORT: 3306
     restart: always
